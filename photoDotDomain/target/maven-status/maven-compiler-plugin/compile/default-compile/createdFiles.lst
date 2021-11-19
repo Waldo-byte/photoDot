@@ -1,0 +1,4 @@
+domain\dto\CreateAccountDTO.class
+domain\persistance\photoDotUser.class
+domain\persistance\PhotoClass.class
+domain\service\GeneralResponse.class

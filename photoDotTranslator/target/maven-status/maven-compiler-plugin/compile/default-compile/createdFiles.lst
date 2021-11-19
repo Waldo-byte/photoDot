@@ -1,0 +1,3 @@
+translator\config\TranslatorConfig.class
+translator\CreateAccountTranslator.class
+translator\Impl\CreateAccountTranslatorImpl.class
