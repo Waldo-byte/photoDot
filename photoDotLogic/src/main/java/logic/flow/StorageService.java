@@ -1,4 +1,4 @@
 package logic.flow;
 
-public class StorageService {
+public interface StorageService {
 }
