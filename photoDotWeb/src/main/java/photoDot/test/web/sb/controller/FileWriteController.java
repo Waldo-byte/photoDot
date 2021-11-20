@@ -1,18 +1,23 @@
 package photoDot.test.web.sb.controller;
 
-import com.azure.storage.blob.BlobContainerClient;
-import com.azure.storage.blob.BlobServiceAsyncClient;
-import com.azure.storage.blob.BlobServiceClient;
-import com.azure.storage.blob.BlobServiceClientBuilder;
+import com.azure.storage.blob.*;
 import com.azure.storage.blob.models.BlobItem;
+import com.microsoft.azure.storage.CloudStorageAccount;
+import com.microsoft.azure.storage.OperationContext;
+import com.microsoft.azure.storage.StorageException;
+import com.microsoft.azure.storage.blob.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoProperties;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.security.InvalidKeyException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,31 +26,47 @@ import java.util.List;
 @RequestMapping("/file")
 @CrossOrigin("*")
 public class FileWriteController {
+    private String azureurl = "DefaultEndpointsProtocol=https;AccountName=retryspringboot;AccountKey=q78B/cJUgK/D+woCWXGgvx8kallQdWZfPJS/WawjYdSh5CTVyXV2D+tdPVQisz8EqI81bTp6Gxlzboso05qcDA==;EndpointSuffix=core.windows.net";
 
-   // @Value("${azure.myblob.url}")
-    private String azureurl = "BlobEndpoint=https://retryspringboot.blob.core.windows.net/;QueueEndpoint=https://retryspringboot.queue.core.windows.net/;FileEndpoint=https://retryspringboot.file.core.windows.net/;TableEndpoint=https://retryspringboot.table.core.windows.net/;SharedAccessSignature=sv=2020-08-04&ss=bfqt&srt=sco&sp=rwdlacupitfx&se=2021-12-09T01:59:16Z&st=2021-11-20T17:59:16Z&spr=https,http&sig=OoHviDFFCRcu83L0ttlwSuwXKu16vLP0RlqtnQ7I2SY%3D";
-
-   // @Value("${azure.myblob.container}")
-    private String containerName = "waldocontainer";
-
-    private BlobContainerClient containerClient(){
-        BlobServiceClient serviceClient = new BlobServiceClientBuilder()
-                .connectionString(azureurl).buildClient();
-        BlobContainerClient container = serviceClient.createBlobContainer(containerName);
-        return container;
+    private CloudBlobContainer container(String idplusname) throws IOException, URISyntaxException, InvalidKeyException, StorageException {
+        String containerName = idplusname;
+        CloudStorageAccount storageAccount = CloudStorageAccount.parse(azureurl);
+        CloudBlobClient blobClient = storageAccount.createCloudBlobClient();
+        CloudBlobContainer blobContainer = blobClient.getContainerReference(containerName);
+        blobContainer.createIfNotExists(BlobContainerPublicAccessType.CONTAINER, new BlobRequestOptions(), new OperationContext());
+        return blobContainer;
     }
+
 
     @GetMapping("/all")
-    public String listFiles(){
-        BlobContainerClient containerClient = containerClient();
-        List<String> listfiles = new ArrayList<>();
-        String item = null;
-        for(BlobItem blobItem: containerClient.listBlobs()){
-            listfiles.add(blobItem.getName());
-            item = blobItem.getName();
-        }
-        return item;
+    public List<String> listFiles(@RequestParam String idplusname) throws IOException, URISyntaxException, InvalidKeyException, StorageException {
+        CloudBlobContainer container = container(idplusname);
+        List<String> list = new ArrayList<>();
+        for(ListBlobItem blobItem: container.listBlobs())
+            list.add(blobItem.getUri().toString());
+        return list;
     }
+
+    public String storeFile(String filename, InputStream content, Long lenght, String idplusname) throws IOException, URISyntaxException, InvalidKeyException, StorageException {
+        CloudBlockBlob blob = container(idplusname).getBlockBlobReference(filename);
+        if(blob.exists())
+        {
+            return "File already exists";
+        }
+        else
+        {
+            blob.upload(content,lenght);
+        }
+        return "Upload Success";
+    }
+
+    @PostMapping("postfile")
+    public String uploadfile(@RequestParam MultipartFile file, @RequestParam String idplususer) throws IOException, URISyntaxException, InvalidKeyException, StorageException {
+        String storefilemsg ="";
+        storefilemsg=storeFile(file.getOriginalFilename(), file.getInputStream(), file.getSize(), idplususer);
+        return file.getOriginalFilename().toString() + storefilemsg;
+    }
+
 
 
 

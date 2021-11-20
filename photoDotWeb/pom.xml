@@ -23,6 +23,10 @@
             <version>12.13.0</version>
         </dependency>
         <dependency>
+            <groupId>com.microsoft.azure</groupId>
+            <artifactId>azure-storage</artifactId>
+        </dependency>
+        <dependency>
             <groupId>photodot.test</groupId>
             <artifactId>photoDotDomain</artifactId>
             <version>${project.version}</version>
