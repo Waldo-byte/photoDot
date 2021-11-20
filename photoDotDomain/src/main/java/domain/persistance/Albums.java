@@ -18,6 +18,11 @@ public class Albums implements Serializable {
     @JoinColumn(name = "userid", nullable = false)
     private photoDotUser user;
 
+    public Albums(String albumname, photoDotUser user) {
+        this.albumname = albumname;
+        this.user = user;
+    }
+
     public Albums(Long id, String albumname, photoDotUser user) {
         this.id = id;
         this.albumname = albumname;
