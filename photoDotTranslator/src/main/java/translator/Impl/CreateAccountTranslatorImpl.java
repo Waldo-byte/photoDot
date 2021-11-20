@@ -10,6 +10,8 @@ import translator.CreateAccountTranslator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
 @Component
 @ComponentScan(value = "repo.persistance")
 public class CreateAccountTranslatorImpl implements CreateAccountTranslator {
@@ -34,6 +36,19 @@ public class CreateAccountTranslatorImpl implements CreateAccountTranslator {
             throw new RuntimeException("Unable to read from db.\n Error:",e);
         }
         return accountDTOS;
+    }
+
+    @Override
+    public CreateAccountDTO getUser(Long id){
+        photoDotUser user = userRepo.getOne(id);
+        try{
+            return new CreateAccountDTO(user);
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e.toString());
+        }
+
     }
 
     @Override

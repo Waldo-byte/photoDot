@@ -12,7 +12,7 @@ import java.util.UUID;
 @ApiModel(value="UserAccount", description = "DataTransfer object that represents the photoDotUser class")
 public class CreateAccountDTO implements Serializable {
 
-    private UUID uuid;
+    private long uuid;
     private String name;
     private String surname;
     private String email;
@@ -26,7 +26,6 @@ public class CreateAccountDTO implements Serializable {
         this.surname = surname;
         this.email = email;
         this.password = password;
-        this.uuid = UUID.randomUUID();
     }
 
     public CreateAccountDTO(photoDotUser user)
@@ -103,15 +102,8 @@ public class CreateAccountDTO implements Serializable {
         this.password = password;
     }
 
-    @ApiModelProperty(
-            position = 5,
-            value = "UUID",
-            name = "UUID",
-            dataType = "java.lang.String",
-            example = "gibberish",
-            required = false
-    )
-    public UUID getUuid() {
+
+    public long getUuid() {
         return uuid;
     }
 

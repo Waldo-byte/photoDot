@@ -15,10 +15,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("UserAccount")
 @ComponentScan(value = "logic.flow")
+@CrossOrigin("*")
 public class UserAccountController {
 
     private final FetchAccount fetchAccountFlow;
@@ -38,11 +40,27 @@ public class UserAccountController {
             @ApiResponse(code = 404, message = "Not Found", response = GeneralResponse.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class)
     })
-    public ResponseEntity<GeneralResponse<List<CreateAccountDTO>>> getAll()
+    public List<CreateAccountDTO> getAll()
     {
         List<CreateAccountDTO> userAcc = fetchAccountFlow.getAll();
         GeneralResponse<List<CreateAccountDTO>> response = new GeneralResponse<>(true, userAcc);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return userAcc;
+    }
+
+
+    @GetMapping("/user")
+    @ApiOperation(value = "gets a certain user in the db")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "User created", response = GeneralResponse.class),
+            @ApiResponse(code = 400, message = "Bad request", response = GeneralResponse.class),
+            @ApiResponse(code = 404, message = "Not Found", response = GeneralResponse.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class)
+    })
+    public CreateAccountDTO getUser(@RequestParam Long userid)
+    {
+        CreateAccountDTO userAcc = fetchAccountFlow.getUser(userid);
+        GeneralResponse<CreateAccountDTO> response = new GeneralResponse<>(true, userAcc);
+        return userAcc;
     }
 
     @PostMapping("")

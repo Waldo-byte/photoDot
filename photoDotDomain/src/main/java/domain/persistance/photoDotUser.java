@@ -1,17 +1,23 @@
 package domain.persistance;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "photoDotUser")
+@Table(name = "photoDotUser1")
 public class photoDotUser {
-
-    private UUID userid;
+    @Id
+    @SequenceGenerator(
+            name = "usrSeq",
+            sequenceName = "usrSeq",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "usrSeq"
+    )
+    private Long userid;
     private String name;
     private String surname;
     private String email;
@@ -25,12 +31,10 @@ public class photoDotUser {
         this.surname = surname;
         this.email = email;
         this.password = password;
-        this.userid = UUID.randomUUID();
     }
 
-    @Id
-    @Column(name="UUID")
-    public UUID getUserid() {
+    @Column(name="id")
+    public Long getUserid() {
         return userid;
     }
 
@@ -54,7 +58,7 @@ public class photoDotUser {
         return password;
     }
 
-    public void setUserid(UUID userid) {
+    public void setUserid(Long userid) {
         this.userid = userid;
     }
 

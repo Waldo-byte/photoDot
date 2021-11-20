@@ -9,6 +9,7 @@ import translator.CreateAccountTranslator;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.UUID;
 
 @Transactional
 @Component
@@ -25,4 +26,9 @@ public class FetchAccountImpl implements FetchAccount {
 
     @Override
     public List<CreateAccountDTO> getAll(){return accountTranslator.getAll();}
+
+    @Override
+    public CreateAccountDTO getUser(Long id) {
+        return accountTranslator.getUser(id);
+    }
 }
