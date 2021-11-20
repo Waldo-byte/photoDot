@@ -1,4 +1,5 @@
 C:\photoDot\photoDotLogic\src\main\java\logic\config\LogicConfig.java
 C:\photoDot\photoDotLogic\src\main\java\logic\flow\CreateAccountFlow.java
+C:\photoDot\photoDotLogic\src\main\java\logic\flow\Implementation\FetchAccountImpl.java
 C:\photoDot\photoDotLogic\src\main\java\logic\flow\FetchAccount.java
 C:\photoDot\photoDotLogic\src\main\java\logic\flow\Implementation\CreateAccountImpl.java

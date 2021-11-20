@@ -102,7 +102,7 @@ public class CreateAccountDTO implements Serializable {
         this.password = password;
     }
 
-
+    @JsonIgnore
     public long getUuid() {
         return uuid;
     }

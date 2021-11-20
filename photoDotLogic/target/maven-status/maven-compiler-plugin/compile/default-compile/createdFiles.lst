@@ -1,4 +1,5 @@
 logic\flow\CreateAccountFlow.class
 logic\flow\FetchAccount.class
 logic\flow\Implementation\CreateAccountImpl.class
+logic\flow\Implementation\FetchAccountImpl.class
 logic\config\LogicConfig.class
