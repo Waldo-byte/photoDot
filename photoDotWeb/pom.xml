@@ -14,6 +14,15 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.microsoft.azure</groupId>
+            <artifactId>azure-storage-blob</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-storage-blob</artifactId>
+            <version>12.13.0</version>
+        </dependency>
+        <dependency>
             <groupId>photodot.test</groupId>
             <artifactId>photoDotDomain</artifactId>
             <version>${project.version}</version>
