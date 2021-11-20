@@ -1,12 +1,14 @@
 package domain.persistance;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "photoDotUser1")
-public class photoDotUser {
+@Table(name = "photoDotUser3")
+public class photoDotUser implements Serializable {
     @Id
     @SequenceGenerator(
             name = "usrSeq",
@@ -22,6 +24,8 @@ public class photoDotUser {
     private String surname;
     private String email;
     private String password;
+
+
 
     public photoDotUser() {
     }
