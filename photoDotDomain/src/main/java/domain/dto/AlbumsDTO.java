@@ -82,7 +82,6 @@ public class AlbumsDTO implements Serializable {
 //        return new Albums(this.albumname,this.userid);
 //    }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

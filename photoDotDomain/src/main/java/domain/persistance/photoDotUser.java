@@ -1,5 +1,7 @@
 package domain.persistance;
 
+import domain.dto.PhotoClassDTO;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -25,7 +27,10 @@ public class photoDotUser implements Serializable {
     private String email;
     private String password;
 
-
+    public photoDotUser(PhotoClassDTO photoClassDTO)
+    {
+        this.userid = photoClassDTO.getUser();
+    }
 
     public photoDotUser() {
     }

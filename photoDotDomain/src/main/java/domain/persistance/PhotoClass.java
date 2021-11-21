@@ -22,6 +22,11 @@ public class PhotoClass implements Serializable {
     @JoinColumn(name = "albumid")
     private Albums album;
 
+    public PhotoClass(String filename, photoDotUser photoDotUser) {
+        this.filename=filename;
+        this.user = photoDotUser;
+    }
+
     public Albums getAlbum() {
         return album;
     }

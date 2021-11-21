@@ -62,8 +62,8 @@ public class FileWriteController {
 
     @PostMapping("postfile")
     public String uploadfile(@RequestParam MultipartFile file, @RequestParam String idplususer) throws IOException, URISyntaxException, InvalidKeyException, StorageException {
-        String storefilemsg ="";
-        storefilemsg=storeFile(file.getOriginalFilename(), file.getInputStream(), file.getSize(), idplususer);
+        String storefilemsg = "";
+        storefilemsg = storeFile(file.getOriginalFilename(), file.getInputStream(), file.getSize(), idplususer);
         return file.getOriginalFilename().toString() + storefilemsg;
     }
 
