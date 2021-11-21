@@ -1,4 +1,9 @@
+domain\dto\AlbumsDTO.class
+domain\dto\SharedImagesDTO.class
+domain\persistance\PhotoClass.class
+domain\dto\PhotoClassDTO.class
 domain\dto\CreateAccountDTO.class
 domain\persistance\photoDotUser.class
-domain\persistance\PhotoClass.class
 domain\service\GeneralResponse.class
+domain\persistance\Albums.class
+domain\persistance\SharedImages.class

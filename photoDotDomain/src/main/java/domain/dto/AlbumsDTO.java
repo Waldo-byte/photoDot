@@ -36,6 +36,7 @@ public class AlbumsDTO implements Serializable {
         this.userid = album.getUser().getUserid();
     }
 
+    @JsonIgnore
     public Long getId() {
         return id;
     }

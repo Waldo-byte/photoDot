@@ -1,11 +1,13 @@
 package photoDot.test.web.sb.controller;
 
+import domain.dto.AlbumsDTO;
 import domain.dto.CreateAccountDTO;
 import domain.service.GeneralResponse;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import logic.flow.AlbumFlow;
 import logic.flow.CreateAccountFlow;
 import logic.flow.FetchAccount;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +27,13 @@ public class UserAccountController {
 
     private final FetchAccount fetchAccountFlow;
     private final CreateAccountFlow createAccountFlow;
+    private final AlbumFlow  albumFlow;
 
     @Autowired
-    public UserAccountController(FetchAccount fetchAccountFlow, CreateAccountFlow createAccountFlow) {
+    public UserAccountController(FetchAccount fetchAccountFlow, CreateAccountFlow createAccountFlow, AlbumFlow albumFlow) {
         this.fetchAccountFlow = fetchAccountFlow;
         this.createAccountFlow = createAccountFlow;
+        this.albumFlow = albumFlow;
     }
 
     @GetMapping("/all")
@@ -77,6 +81,7 @@ public class UserAccountController {
                     required = true)
             @RequestBody CreateAccountDTO createAccountDTO){
         CreateAccountDTO accountUserData = createAccountFlow.create(createAccountDTO);
+        AlbumsDTO albumsDTO = albumFlow.create(new AlbumsDTO("root",accountUserData.getUuid()));
         GeneralResponse<CreateAccountDTO> response = new GeneralResponse<>(true , accountUserData);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

@@ -11,4 +11,8 @@ import java.util.UUID;
 public interface photoDotUserRepo extends JpaRepository<photoDotUser, Long> {
     @Query("select p from photoDotUser p where p.name = ?1")
     photoDotUser findByName(String name);
+
+    @Query("select (count(p) > 0) from photoDotUser p where p.email = ?1")
+    boolean existsByEmail(String email);
+
 }

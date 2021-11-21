@@ -54,14 +54,22 @@ public class CreateAccountTranslatorImpl implements CreateAccountTranslator {
     @Override
     public CreateAccountDTO create(CreateAccountDTO accountDTO) {
         try{
-            photoDotUser temporary_user = accountDTO.getUser();
-            photoDotUser accountUser = userRepo.save(temporary_user);
-            System.out.println(accountUser);
-            return new CreateAccountDTO(accountUser);
+            boolean exists = userRepo.existsByEmail(accountDTO.getEmail());
+            if(!exists)
+            {
+                photoDotUser temporary_user = accountDTO.getUser();
+                photoDotUser accountUser = userRepo.save(temporary_user);
+                System.out.println(accountUser);
+                return new CreateAccountDTO(accountUser);
+            }
+            else{
+                throw new RuntimeException("User already exists");
+            }
+
         }
         catch (Exception e)
         {
-            throw new RuntimeException("Unable to save to db", e);
+            throw new RuntimeException("Unable to save to db or user already exists.", e);
         }
     }
 }

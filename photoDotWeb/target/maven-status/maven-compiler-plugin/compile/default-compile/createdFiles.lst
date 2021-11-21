@@ -1,6 +1,10 @@
 photoDot\test\web\sb\config\WebConfig.class
+photoDot\test\web\sb\controller\SharedImageController.class
 photoDot\test\web\sb\RestServiceApp.class
+photoDot\test\web\sb\controller\AlbumController.class
+photoDot\test\web\sb\FileService.class
 photoDot\test\web\sb\config\SwaggerConfiguration.class
 photoDot\test\web\sb\controller\DemoController.class
 photoDot\test\web\sb\controller\FileWriteController.class
+photoDot\test\web\sb\controller\PhotoController.class
 photoDot\test\web\sb\controller\UserAccountController.class

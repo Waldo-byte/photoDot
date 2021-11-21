@@ -5,18 +5,23 @@ import domain.dto.SharedImagesDTO;
 import domain.persistance.PhotoClass;
 import domain.persistance.SharedImages;
 import domain.persistance.photoDotUser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 import repo.persistance.PhotoClassRepo;
 import repo.persistance.SharedImagesRepo;
 import repo.persistance.photoDotUserRepo;
 import translator.ShareImagesTranslator;
 
+@Component
+@ComponentScan(value = "repo.persistance")
 public class SharedImagesTranslatorImpl implements ShareImagesTranslator {
     private final SharedImagesRepo sharedImagesRepo;
     private final PhotoClassRepo sharedphotos;
     private final photoDotUserRepo shareduser;
 
 
-
+    @Autowired
     public SharedImagesTranslatorImpl(SharedImagesRepo sharedImagesRepo, PhotoClassRepo sharedphotos, photoDotUserRepo shareduser) {
         this.sharedImagesRepo = sharedImagesRepo;
         this.sharedphotos = sharedphotos;

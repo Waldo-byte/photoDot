@@ -7,12 +7,16 @@ import java.util.Objects;
 @Entity
 @Table(name ="user_photo" )
 public class SharedImages implements Serializable {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private photoDotUser user;
 
-    @Id
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "photo_id")
     private PhotoClass photo;
@@ -31,6 +35,14 @@ public class SharedImages implements Serializable {
     public SharedImages(photoDotUser user, PhotoClass photo) {
         this.user = user;
         this.photo = photo;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setUser(photoDotUser user) {

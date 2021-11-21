@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
+@Table(name = "albums")
 public class Albums implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,6 +23,7 @@ public class Albums implements Serializable {
         this.albumname = albumname;
         this.user = user;
     }
+
 
     public Albums(Long id, String albumname, photoDotUser user) {
         this.id = id;

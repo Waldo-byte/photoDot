@@ -9,6 +9,7 @@ import java.util.Objects;
 @ApiModel(value = "ImageSharedDTO", description = "Data transfer object for shared images")
 public class SharedImagesDTO {
 
+    private Long id;
     private Long pictureiD;
     private Long usrID;
 
@@ -53,6 +54,14 @@ public class SharedImagesDTO {
     )
     public Long getUsrID() {
         return usrID;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override

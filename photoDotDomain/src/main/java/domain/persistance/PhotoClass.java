@@ -27,6 +27,12 @@ public class PhotoClass implements Serializable {
         this.user = photoDotUser;
     }
 
+    public PhotoClass(String filename, photoDotUser user, Albums album) {
+        this.filename = filename;
+        this.user = user;
+        this.album = album;
+    }
+
     public Albums getAlbum() {
         return album;
     }
