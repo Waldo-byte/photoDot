@@ -2,4 +2,10 @@ logic\flow\CreateAccountFlow.class
 logic\flow\FetchAccount.class
 logic\flow\Implementation\CreateAccountImpl.class
 logic\flow\Implementation\FetchAccountImpl.class
+logic\flow\Implementation\PhotoClassFlowImpl.class
+logic\flow\Implementation\AlbumsFlowImpl.class
+logic\flow\Implementation\ShareImagesFlowImpl.class
+logic\flow\PhotoClassFlow.class
+logic\flow\SharedImagesFlow.class
 logic\config\LogicConfig.class
+logic\flow\AlbumFlow.class

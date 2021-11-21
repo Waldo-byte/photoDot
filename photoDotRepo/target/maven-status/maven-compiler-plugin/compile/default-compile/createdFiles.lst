@@ -1,2 +1,5 @@
-repo\persistance\photoDotUserRepo.class
+repo\persistance\AlbumRepo.class
 repo\config\RepositoryConfig.class
+repo\persistance\PhotoClassRepo.class
+repo\persistance\photoDotUserRepo.class
+repo\persistance\SharedImagesRepo.class

@@ -1,5 +1,11 @@
 C:\photoDot\photoDotLogic\src\main\java\logic\config\LogicConfig.java
+C:\photoDot\photoDotLogic\src\main\java\logic\flow\AlbumFlow.java
 C:\photoDot\photoDotLogic\src\main\java\logic\flow\CreateAccountFlow.java
+C:\photoDot\photoDotLogic\src\main\java\logic\flow\Implementation\AlbumsFlowImpl.java
 C:\photoDot\photoDotLogic\src\main\java\logic\flow\Implementation\FetchAccountImpl.java
+C:\photoDot\photoDotLogic\src\main\java\logic\flow\Implementation\ShareImagesFlowImpl.java
+C:\photoDot\photoDotLogic\src\main\java\logic\flow\PhotoClassFlow.java
 C:\photoDot\photoDotLogic\src\main\java\logic\flow\FetchAccount.java
+C:\photoDot\photoDotLogic\src\main\java\logic\flow\SharedImagesFlow.java
 C:\photoDot\photoDotLogic\src\main\java\logic\flow\Implementation\CreateAccountImpl.java
+C:\photoDot\photoDotLogic\src\main\java\logic\flow\Implementation\PhotoClassFlowImpl.java

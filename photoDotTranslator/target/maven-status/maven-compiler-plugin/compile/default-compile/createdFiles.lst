@@ -1,3 +1,9 @@
 translator\config\TranslatorConfig.class
-translator\CreateAccountTranslator.class
+translator\Impl\PhotoClassTranslatorImpl.class
 translator\Impl\CreateAccountTranslatorImpl.class
+translator\Impl\AlbumTranslatorImpl.class
+translator\AlbumTranslator.class
+translator\PhotoClassTranslator.class
+translator\ShareImagesTranslator.class
+translator\CreateAccountTranslator.class
+translator\Impl\SharedImagesTranslatorImpl.class
