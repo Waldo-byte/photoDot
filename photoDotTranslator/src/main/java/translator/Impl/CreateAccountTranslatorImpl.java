@@ -52,6 +52,12 @@ public class CreateAccountTranslatorImpl implements CreateAccountTranslator {
     }
 
     @Override
+    public String getName(Long id) {
+        photoDotUser photoDotUser = userRepo.getOne(id);
+        return photoDotUser.getName();
+    }
+
+    @Override
     public CreateAccountDTO create(CreateAccountDTO accountDTO) {
         try{
             boolean exists = userRepo.existsByEmail(accountDTO.getEmail());

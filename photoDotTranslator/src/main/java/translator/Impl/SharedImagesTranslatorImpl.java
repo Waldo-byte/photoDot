@@ -28,34 +28,32 @@ public class SharedImagesTranslatorImpl implements ShareImagesTranslator {
         this.shareduser = shareduser;
     }
 
-    public SharedImagesTranslatorImpl(SharedImagesRepo sharedImagesRepo) {
-        this.sharedImagesRepo = sharedImagesRepo;
-        this.sharedphotos = null;
-        this.shareduser = null;
-    }
-
-    public SharedImagesTranslatorImpl(PhotoClassRepo sharedphotos) {
-        this.sharedphotos = sharedphotos;
-        this.sharedImagesRepo = null;
-        this.shareduser = null;
-    }
 
     @Override
     public SharedImagesDTO create(SharedImagesDTO sharedImagesDTO) {
         try{
-            PhotoClass shareimage = sharedphotos.getOne(sharedImagesDTO.getPictureiD());
-            photoDotUser sharedusers = shareduser.getOne(sharedImagesDTO.getUsrID());
-            return new SharedImagesDTO(sharedImagesRepo.save(
-                    new SharedImages(
-                            sharedusers,
-                            shareimage
-                    ))
-            );
-
+            System.out.println("This far");
+            Long id = sharedImagesDTO.getPictureiD();
+            PhotoClass shareimage = sharedphotos.findByPhotoid(id);
+            System.out.println(shareimage);
+            photoDotUser sharedusers = shareduser.findByUseridIs(sharedImagesDTO.getUsrID());
+            System.out.println(sharedusers);
+            if(sharedusers.getUserid() == shareimage.getUser().getUserid())
+            {
+                return null;
+            }
+            else{
+                return new SharedImagesDTO(sharedImagesRepo.save(
+                        new SharedImages(
+                                sharedusers,
+                                shareimage
+                        ))
+                );
+            }
         }
         catch (Exception e)
         {
-            throw new RuntimeException("Unable to save to db", e);
+            throw new RuntimeException("Unable to save to db "+e.toString());
         }
     }
 }

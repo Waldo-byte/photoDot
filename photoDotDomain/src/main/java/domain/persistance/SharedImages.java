@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name ="user_photo" )
+@Table(name ="user_photo1" )
 public class SharedImages implements Serializable {
 
     @Id

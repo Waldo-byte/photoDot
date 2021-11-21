@@ -4,13 +4,16 @@ import com.microsoft.azure.storage.CloudStorageAccount;
 import com.microsoft.azure.storage.OperationContext;
 import com.microsoft.azure.storage.StorageException;
 import com.microsoft.azure.storage.blob.*;
+import domain.dto.AlbumsDTO;
 import domain.dto.CreateAccountDTO;
 import domain.dto.PhotoClassDTO;
+import domain.persistance.Albums;
 import domain.persistance.PhotoClass;
 import domain.persistance.photoDotUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
+import repo.persistance.AlbumRepo;
 import repo.persistance.PhotoClassRepo;
 import repo.persistance.photoDotUserRepo;
 import translator.PhotoClassTranslator;
@@ -27,23 +30,16 @@ import java.util.List;
 public class PhotoClassTranslatorImpl implements PhotoClassTranslator {
     private final PhotoClassRepo photoClassRepo;
     private final photoDotUserRepo photoDotUserRepo;
+    private final AlbumRepo albumRepo;
     private String azureurl = "DefaultEndpointsProtocol=https;AccountName=retryspringboot;AccountKey=q78B/cJUgK/D+woCWXGgvx8kallQdWZfPJS/WawjYdSh5CTVyXV2D+tdPVQisz8EqI81bTp6Gxlzboso05qcDA==;EndpointSuffix=core.windows.net";
 
     @Autowired
-    public PhotoClassTranslatorImpl(PhotoClassRepo photoClassRepo) {
-        this.photoClassRepo = photoClassRepo;
-        this.photoDotUserRepo = null;
-    }
-
-    public PhotoClassTranslatorImpl(PhotoClassRepo photoClassRepo, repo.persistance.photoDotUserRepo photoDotUserRepo) {
+    public PhotoClassTranslatorImpl(PhotoClassRepo photoClassRepo, repo.persistance.photoDotUserRepo photoDotUserRepo, AlbumRepo albumRepo) {
         this.photoClassRepo = photoClassRepo;
         this.photoDotUserRepo = photoDotUserRepo;
+        this.albumRepo = albumRepo;
     }
 
-    public PhotoClassTranslatorImpl(repo.persistance.photoDotUserRepo photoDotUserRepo) {
-        this.photoDotUserRepo = photoDotUserRepo;
-        this.photoClassRepo = null;
-    }
 
     @Override
     public PhotoClassDTO getPhoto(Long id){
@@ -68,11 +64,12 @@ public class PhotoClassTranslatorImpl implements PhotoClassTranslator {
             }
             else{
                 photoDotUser photoDotUser = photoDotUserRepo.getOne(photoClassDTO.getUser());
-                PhotoClass photoClass = photoClassRepo.getOne(photoClassDTO.getPhotoid());
+                Albums albums = albumRepo.findByAlbumnameAndUser_Userid("root", photoClassDTO.getUser());
                 return new PhotoClassDTO(photoClassRepo.save(
                         new PhotoClass(
                                 photoClassDTO.getFilename(),
-                                photoDotUser
+                                photoDotUser,
+                                albums
                         ))
                 );
 

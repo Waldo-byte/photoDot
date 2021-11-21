@@ -20,7 +20,7 @@ public class PhotoClassDTO implements Serializable {
     {
         this.filename = filename;
         this.user = user;
-        this.albums = 0L;
+
     }
 
     public PhotoClassDTO(String filename, Long user, Long albums) {
@@ -33,12 +33,7 @@ public class PhotoClassDTO implements Serializable {
         this.photoid = photoClass.getId();
         this.filename = photoClass.getFilename();
         this.user = photoClass.getUser().getUserid();
-        if(photoClass.getAlbum().getId() == null){
-            this.albums = 0L;
-        }
-        else{
-            photoClass.getAlbum().getId();
-        }
+        this.albums = photoClass.getAlbum().getId();
 
     }
 

@@ -10,5 +10,6 @@ public interface CreateAccountTranslator {
 
     CreateAccountDTO create(CreateAccountDTO accountDTO);
     CreateAccountDTO getUser(Long id);
+    String getName(Long id);
 
 }

@@ -24,4 +24,9 @@ public class CreateAccountImpl implements CreateAccountFlow {
     public CreateAccountDTO create(CreateAccountDTO user) {
         return accountTranslator.create(user);
     }
+
+    @Override
+    public String getName(Long id) {
+        return accountTranslator.getName(id);
+    }
 }

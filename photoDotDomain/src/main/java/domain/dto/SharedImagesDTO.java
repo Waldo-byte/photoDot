@@ -20,6 +20,7 @@ public class SharedImagesDTO {
 
     public SharedImagesDTO(SharedImages sharedImages)
     {
+        this.id = sharedImages.getId();
         this.pictureiD = sharedImages.getPhoto().getId();
         this.usrID = sharedImages.getUser().getUserid();
     }

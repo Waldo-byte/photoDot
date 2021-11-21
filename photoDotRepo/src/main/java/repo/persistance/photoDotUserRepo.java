@@ -15,4 +15,9 @@ public interface photoDotUserRepo extends JpaRepository<photoDotUser, Long> {
     @Query("select (count(p) > 0) from photoDotUser p where p.email = ?1")
     boolean existsByEmail(String email);
 
+    @Query("select p from photoDotUser p where p.userid = ?1")
+    photoDotUser findByUseridIs(Long userid);
+
+
+
 }
