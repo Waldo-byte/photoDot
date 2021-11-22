@@ -12,7 +12,7 @@ import java.util.UUID;
 @ApiModel(value="UserAccount", description = "DataTransfer object that represents the photoDotUser class")
 public class CreateAccountDTO implements Serializable {
 
-    private long uuid;
+    private Long uuid;
     private String name;
     private String surname;
     private String email;

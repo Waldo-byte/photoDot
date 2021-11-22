@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.rmi.RemoteException;
 import java.security.InvalidKeyException;
@@ -80,4 +81,22 @@ public class PhotoController {
             list.add(blobItem.getUri().toString());
         return list;
     }
+
+//    @GetMapping("/Download")
+//    public PhotoClassDTO download(@RequestParam Long userid, @RequestParam URI uri, @RequestParam String name) throws IOException, URISyntaxException, InvalidKeyException, StorageException {
+//    CloudBlobContainer container = container(userid + name.toLowerCase(Locale.ROOT));
+//    try{
+//        List<String> list = new ArrayList<>();
+//        for(ListBlobItem blobItem: container.listBlobs()){
+//            list.add(blobItem.getUri().toString());
+//            blobItem.
+//        }
+//
+//    }
+//    catch (Exception e)
+//    {
+//        throw new RemoteException(e.toString());
+//    }
+//
+//    }
 }

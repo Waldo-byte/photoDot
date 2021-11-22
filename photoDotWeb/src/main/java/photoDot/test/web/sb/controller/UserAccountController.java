@@ -36,6 +36,7 @@ public class UserAccountController {
         this.albumFlow = albumFlow;
     }
 
+    @CrossOrigin("http://localhost:8080")
     @GetMapping("/all")
     @ApiOperation(value = "Gets all users in the db", notes = "only for debugging uses")
     @ApiResponses(value = {
@@ -51,7 +52,7 @@ public class UserAccountController {
         return userAcc;
     }
 
-
+    @CrossOrigin("http://localhost:8080")
     @GetMapping("/user")
     @ApiOperation(value = "gets a certain user in the db")
     @ApiResponses(value = {
@@ -67,20 +68,10 @@ public class UserAccountController {
         return userAcc;
     }
 
-    @PostMapping("")
-    @ApiOperation(value = "Create New User", notes = "create new user in db")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "User created", response = GeneralResponse.class),
-            @ApiResponse(code = 400, message = "Bad request", response = GeneralResponse.class),
-            @ApiResponse(code = 404, message = "Not Found", response = GeneralResponse.class),
-            @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class)
-    })
-    public ResponseEntity<GeneralResponse<CreateAccountDTO>> create(
-            @ApiParam(
-                    value = "Request body to create user",
-                    required = true)
-            @RequestBody CreateAccountDTO createAccountDTO){
-        CreateAccountDTO accountUserData = createAccountFlow.create(createAccountDTO);
+    @CrossOrigin("http://localhost:8080")
+    @PostMapping("/")
+    public ResponseEntity<GeneralResponse<CreateAccountDTO>> create(@RequestParam String name, @RequestParam String surname, @RequestParam String email, @RequestParam String password){
+        CreateAccountDTO accountUserData = createAccountFlow.create(new CreateAccountDTO(name, surname, email, password));
         AlbumsDTO albumsDTO = albumFlow.create(new AlbumsDTO("root",accountUserData.getUuid()));
         GeneralResponse<CreateAccountDTO> response = new GeneralResponse<>(true , accountUserData);
         return new ResponseEntity<>(response, HttpStatus.OK);
