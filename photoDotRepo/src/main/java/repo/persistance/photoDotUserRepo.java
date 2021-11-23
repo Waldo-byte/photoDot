@@ -18,6 +18,16 @@ public interface photoDotUserRepo extends JpaRepository<photoDotUser, Long> {
     @Query("select p from photoDotUser p where p.userid = ?1")
     photoDotUser findByUseridIs(Long userid);
 
+    @Query("select p from photoDotUser p where p.email = ?1")
+    photoDotUser findByEmail(String email);
+
+    @Query("select p from photoDotUser p where p.email = ?1 and p.password = ?2")
+    photoDotUser findByEmailAndPassword(String email, String password);
+
+
+
+
+
 
 
 }

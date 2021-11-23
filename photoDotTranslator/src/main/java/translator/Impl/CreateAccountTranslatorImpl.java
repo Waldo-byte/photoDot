@@ -2,6 +2,7 @@ package translator.Impl;
 
 import domain.dto.CreateAccountDTO;
 import domain.persistance.photoDotUser;
+import org.checkerframework.checker.units.qual.C;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
@@ -55,6 +56,18 @@ public class CreateAccountTranslatorImpl implements CreateAccountTranslator {
     public String getName(Long id) {
         photoDotUser photoDotUser = userRepo.getOne(id);
         return photoDotUser.getName();
+    }
+
+    @Override
+    public CreateAccountDTO findbyEmail(String emai) {
+        photoDotUser photoDotUser = userRepo.findByEmail(emai);
+        return new CreateAccountDTO(photoDotUser);
+    }
+
+    @Override
+    public CreateAccountDTO findByEmailAndPassword(String email, String password) {
+        CreateAccountDTO createAccountDTO = new CreateAccountDTO(userRepo.findByEmailAndPassword(email, password));
+        return createAccountDTO;
     }
 
     @Override

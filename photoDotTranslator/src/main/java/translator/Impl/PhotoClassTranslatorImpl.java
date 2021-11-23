@@ -102,6 +102,7 @@ public class PhotoClassTranslatorImpl implements PhotoClassTranslator {
         }
         else
         {
+
             blob.upload(content,lenght);
         }
         return "Upload Success";
@@ -115,5 +116,17 @@ public class PhotoClassTranslatorImpl implements PhotoClassTranslator {
         CloudBlobContainer blobContainer = blobClient.getContainerReference(containerName);
         blobContainer.createIfNotExists(BlobContainerPublicAccessType.CONTAINER, new BlobRequestOptions(), new OperationContext());
         return blobContainer;
+    }
+    @Override
+    public boolean deleteFile(String filename, String idplusname) throws URISyntaxException, InvalidKeyException, StorageException {
+        CloudBlockBlob blob = container(idplusname).getBlockBlobReference(filename);
+        boolean deleted = false;
+        if(blob.exists())
+        {
+            blob.deleteIfExists();
+            deleted= true;
+        }
+        return deleted;
+
     }
 }

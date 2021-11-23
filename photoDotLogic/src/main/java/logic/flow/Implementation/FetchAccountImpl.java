@@ -31,4 +31,14 @@ public class FetchAccountImpl implements FetchAccount {
     public CreateAccountDTO getUser(Long id) {
         return accountTranslator.getUser(id);
     }
+
+    @Override
+    public CreateAccountDTO findbyEmail(String email) {
+        return accountTranslator.findbyEmail(email);
+    }
+
+    @Override
+    public CreateAccountDTO findByEmailAndPassword(String email, String password) {
+        return accountTranslator.findByEmailAndPassword(email, password);
+    }
 }

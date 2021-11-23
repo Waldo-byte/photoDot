@@ -11,5 +11,7 @@ public interface CreateAccountTranslator {
     CreateAccountDTO create(CreateAccountDTO accountDTO);
     CreateAccountDTO getUser(Long id);
     String getName(Long id);
+    CreateAccountDTO findbyEmail(String emai);
+    CreateAccountDTO findByEmailAndPassword(String email, String password);
 
 }

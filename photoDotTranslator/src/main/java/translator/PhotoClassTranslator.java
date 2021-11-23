@@ -16,4 +16,5 @@ public interface PhotoClassTranslator {
     String getUser(Long id);
     String storeFile(String filename, InputStream content, Long lenght, String idplusname) throws URISyntaxException, StorageException, IOException, InvalidKeyException;
     CloudBlobContainer container(String idplusname) throws URISyntaxException, StorageException, InvalidKeyException;
+    boolean deleteFile(String filename, String idplusname) throws URISyntaxException, InvalidKeyException, StorageException;
 }

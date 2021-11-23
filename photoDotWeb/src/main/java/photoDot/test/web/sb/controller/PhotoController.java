@@ -99,4 +99,11 @@ public class PhotoController {
 //    }
 //
 //    }
+
+    @DeleteMapping("/delete")
+    public boolean deleteFile(String filename, String userplusid) throws URISyntaxException, InvalidKeyException, StorageException {
+        boolean delete = photoClassFlow.deleteFile(filename, userplusid);
+        return delete;
+    }
+
 }

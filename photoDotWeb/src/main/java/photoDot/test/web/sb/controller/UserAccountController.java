@@ -77,6 +77,19 @@ public class UserAccountController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @GetMapping("/email")
+    public Long findbyEmail(@RequestParam String email){
+        CreateAccountDTO createAccountDTO = fetchAccountFlow.findbyEmail(email);
+        return createAccountDTO.getUuid();
+    }
+
+    @GetMapping("/emailpass")
+    public CreateAccountDTO findbyEmailandPass(@RequestParam String email, @RequestParam String pass)
+    {
+        CreateAccountDTO createAccountDTO = fetchAccountFlow.findByEmailAndPassword(email, pass);
+        return createAccountDTO;
+    }
+
 
 
 }

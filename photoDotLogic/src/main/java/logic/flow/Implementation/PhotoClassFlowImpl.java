@@ -46,5 +46,10 @@ public class PhotoClassFlowImpl implements PhotoClassFlow {
         return photoClassTranslator.container(idplusname);
     }
 
+    @Override
+    public boolean deleteFile(String filename, String idplusname) throws URISyntaxException, InvalidKeyException, StorageException {
+        return photoClassTranslator.deleteFile(filename, idplusname);
+    }
+
 
 }
